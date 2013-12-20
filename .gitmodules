@@ -7,9 +7,6 @@
 [submodule "core/puremvc-as3-util-loadup"]
 	path = core/puremvc-as3-util-loadup
 	url = git@github.com:Dukobpa3/puremvc-as3-util-loadup.git
-[submodule "core/puremvc-as3-util-asynccommand"]
-	path = core/puremvc-as3-util-asynccommand
-	url = git@github.com:Dukobpa3/puremvc-as3-util-asynccommand.git
 [submodule "core/puremvc-as3-multicore-framework"]
 	path = core/puremvc-as3-multicore-framework
 	url = git@github.com:Dukobpa3/puremvc-as3-multicore-framework.git
