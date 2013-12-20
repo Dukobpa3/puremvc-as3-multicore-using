@@ -10,3 +10,6 @@
 [submodule "core/puremvc-as3-multicore-framework"]
 	path = core/puremvc-as3-multicore-framework
 	url = git@github.com:Dukobpa3/puremvc-as3-multicore-framework.git
+[submodule "core/eggs-net-as3"]
+	path = core/eggs-net-as3
+	url = git@github.com:eggs-gd/eggs-net-as3.git
