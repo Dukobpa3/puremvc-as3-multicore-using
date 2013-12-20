@@ -13,6 +13,7 @@
         <module>LoadupUtilAppSkeleton</module>
         <module>multicore-pipes</module>
         <module>multicore-simple</module>
+        <module>eggs-server-connector</module>
     </modules>
 
     <parent>
