@@ -13,7 +13,7 @@
 		<module>puremvc-as3-multicore-framework</module>
         <module>puremvc-as3-util-pipes</module>
         <module>puremvc-as3-util-loadup</module>
-        <!--<module>puremvc-as3-util-eggs</module>-->
+        <module>puremvc-as3-util-eggs</module>
 	</modules>
 
 	<parent>
