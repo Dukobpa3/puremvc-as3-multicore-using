@@ -18,18 +18,10 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.playtika.puremvc</groupId>
-			<artifactId>puremvc-as3-multicore-framework</artifactId>
-			<version>1.0.5</version>
-			<type>swc</type>
-		</dependency>
-
-		<dependency>
-			<groupId>com.playtika.puremvc</groupId>
 			<artifactId>puremvc-as3-util-loadup</artifactId>
 			<version>2.1</version>
 			<type>swc</type>
 		</dependency>
-
 	</dependencies>
 
 </project>

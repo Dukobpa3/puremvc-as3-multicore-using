@@ -14,6 +14,7 @@
         <module>multicore-pipes</module>
         <module>multicore-simple</module>
         <module>eggs-server-connector</module>
+        <!--<module>simple-server</module>-->
     </modules>
 
     <parent>
@@ -21,6 +22,15 @@
         <artifactId>base</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.playtika.puremvc</groupId>
+            <artifactId>puremvc-as3-multicore-framework</artifactId>
+            <version>1.0.5</version>
+            <type>swc</type>
+        </dependency>
+    </dependencies>
 
     <repositories>
         <repository>

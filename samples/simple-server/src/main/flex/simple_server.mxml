@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<mx:Application
+        xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:mx="library://ns.adobe.com/flex/mx"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:v="gd.eggs.samples.simpleserver.view.*"
+
+        paddingBottom="5"
+        paddingLeft="5"
+        paddingRight="5"
+        paddingTop="5"
+
+        addedToStage="onAddedToStage();"
+        initialize="init();"
+        >
+
+    <fx:Declarations>
+
+    </fx:Declarations>
+
+    <fx:Metadata>
+        [SWF(frameRate=60, width=1024, height=768)]
+    </fx:Metadata>
+
+    <fx:Style source="../resources/embedded/style.css"/>
+
+    <fx:Script>
+        <![CDATA[
+        import com.junkbyte.console.Cc;
+
+        import gd.eggs.samples.simpleserver.app.MainFacade;
+
+        private var _facade:MainFacade;
+
+        private function init():void
+        {
+            _facade = MainFacade.getInstance();
+
+            Cc.config.commandLineAllowed = true;
+            Cc.config.tracing = true;
+            Cc.startOnStage(this, "cea");
+        }
+
+        private function onAddedToStage():void
+        {
+            Cc.width = stage.stageWidth;
+            Cc.height = 300;
+
+            loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onUncaughtError)
+
+            var appXML:XML = NativeApplication.nativeApplication.applicationDescriptor;
+            var ns:Namespace = appXML.namespace();
+            stage.nativeWindow.title = stage.nativeWindow.title + " [version: " + appXML.ns::versionNumber + " - " + appXML.ns::versionLabel + "]";
+
+            Cc.info("started:", appXML);
+
+            _facade.startup(this);
+        }
+
+        private function onUncaughtError(event:UncaughtErrorEvent):void
+        {
+            Cc.errorch(event.target, JSON.stringify(event, true));
+        }
+        ]]>
+    </fx:Script>
+
+    <mx:VBox width="100%" height="100%">
+        <v:MainMenu id="mainMenu" labelField="@label" width="100%" />
+        <mx:ToolBar width="100%" height="100" />
+        <v:Settings id="settings" title="settings" width="100%" height="30%" />
+        <v:Logger id="log" title="log" width="100%" height="70%" />
+    </mx:VBox>
+
+</mx:Application>
