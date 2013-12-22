@@ -3,7 +3,7 @@
         xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:mx="library://ns.adobe.com/flex/mx"
         xmlns:s="library://ns.adobe.com/flex/spark"
-        xmlns:v="gd.eggs.samples.simpleserver.view.*"
+        xmlns:vc="gd.eggs.samples.simpleserver.view.vc.*"
 
         paddingBottom="5"
         paddingLeft="5"
@@ -29,6 +29,7 @@
         import com.junkbyte.console.Cc;
 
         import gd.eggs.samples.simpleserver.app.MainFacade;
+
 
         private var _facade:MainFacade;
 
@@ -65,10 +66,10 @@
     </fx:Script>
 
     <mx:VBox width="100%" height="100%">
-        <v:MainMenu id="mainMenu" labelField="@label" width="100%" />
-        <mx:ToolBar width="100%" height="100" />
-        <v:Settings id="settings" title="settings" width="100%" height="30%" />
-        <v:Logger id="log" title="log" width="100%" height="70%" />
+        <vc:MainMenu id="mainMenu" labelField="@label" width="100%"/>
+        <mx:ToolBar width="100%" height="100"/>
+        <vc:Settings id="settings" title="settings" width="100%" height="30%"/>
+        <vc:Logger id="log" title="log" width="100%" height="70%"/>
     </mx:VBox>
 
 </mx:Application>
