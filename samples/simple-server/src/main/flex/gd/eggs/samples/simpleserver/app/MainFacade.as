@@ -21,8 +21,7 @@ package gd.eggs.samples.simpleserver.app
 
 		public static function getInstance():MainFacade
 		{
-			instance ||= new MainFacade();
-			return instance as MainFacade;
+			return instance ||= new MainFacade();
 		}
 
 		public function startup(main:Sprite):void {}
