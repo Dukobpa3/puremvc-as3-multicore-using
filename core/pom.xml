@@ -17,35 +17,155 @@
         <module>eggs-net-as3</module>
 	</modules>
 
-	<parent>
-		<groupId>gd.eggs.as3</groupId>
-		<artifactId>base</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
-	</parent>
+	<properties>
+		<flexmojos.version>6.0.1</flexmojos.version>
+		<flex.version>4.6.0.23201</flex.version>
+		<flashplayer.version>11.5</flashplayer.version>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>release</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<compile.debug>false</compile.debug>
+			</properties>
+		</profile>
+		<profile>
+			<id>debug</id>
+			<activation>
+				<property>
+					<name>debug</name>
+				</property>
+			</activation>
+			<properties>
+				<compile.debug>true</compile.debug>
+			</properties>
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<!-- Flex SDK -->
+		<dependency>
+			<groupId>com.adobe.flex.framework</groupId>
+			<artifactId>flex-framework</artifactId>
+			<version>${flex.version}</version>
+			<type>pom</type>
+			<exclusions>
+				<exclusion>
+					<groupId>com.adobe.flash.framework</groupId>
+					<artifactId>playerglobal</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.adobe.flash.framework</groupId>
+			<artifactId>playerglobal</artifactId>
+			<version>${flashplayer.version}</version>
+			<type>swc</type>
+		</dependency>
+
+		<!-- flexunit -->
+		<dependency><!-- FlexUnit for flexmojos -->
+			<groupId>net.flexmojos.oss</groupId>
+			<artifactId>flexmojos-unittest-flexunit4</artifactId>
+			<version>${flexmojos.version}</version>
+			<type>swc</type>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency><!-- framework for unittests -->
+			<groupId>org.flexunit</groupId>
+			<artifactId>flexunit</artifactId>
+			<version>4.1.0</version>
+			<type>swc</type>
+			<classifier>as3</classifier>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-as3</artifactId>
+			<version>1.1</version>
+			<type>swc</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockolate</groupId>
+			<artifactId>mockolate</artifactId>
+			<version>0.12.4</version>
+			<classifier>as3</classifier>
+			<type>swc</type>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<finalName>${project.name}</finalName>
+		<sourceDirectory>src/main/as3</sourceDirectory>
+		<testSourceDirectory>src/test/as3</testSourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>net.flexmojos.oss</groupId>
+				<artifactId>flexmojos-maven-plugin</artifactId>
+				<version>${flexmojos.version}</version>
+				<extensions>true</extensions>
+
+				<configuration>
+					<storepass/>
+					<targetPlayer>${flashplayer.version}</targetPlayer>
+					<debug>${compile.debug}</debug>
+					<defines>
+						<property>
+							<name>CONFIG::debug</name>
+							<value>${compile.debug}</value>
+						</property>
+						<property>
+							<name>CONFIG::versionNumber</name>
+							<value>'${project.version}'</value>
+						</property>
+					</defines>
+					<compilerWarnings>
+						<warn-no-constructor>false</warn-no-constructor>
+					</compilerWarnings>
+					<keepAs3Metadatas>
+						<name>ArrayElementType</name>
+					</keepAs3Metadatas>
+				</configuration>
+
+				<dependencies>
+					<dependency>
+						<groupId>com.adobe.flex</groupId>
+						<artifactId>compiler</artifactId>
+						<version>${flex.version}</version>
+						<type>pom</type>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
 
 	<repositories>
 		<repository>
-			<id>github.repo.release</id>
-			<name>Internal Repository</name>
-			<url>https://github.com/eggs-gd/eggs-mvn-artifactory/raw/master/mvn-repo/release</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
+			<id>flex-mojos-repository</id>
+			<name>flex-mojos-repository</name>
+			<url>https://oss.sonatype.org/content/repositories/releases</url>
 		</repository>
 		<repository>
-			<id>github.repo.snapshot</id>
-			<name>Internal Repository</name>
-			<url>https://github.com/eggs-gd/eggs-mvn-artifactory/raw/master/mvn-repo/snapshot</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
+			<id>artifactory-ext</id>
+			<name>artifactory-ext-release</name>
+			<url>http://artifactory.corp/artifactory/ext-release-local/</url>
 		</repository>
 	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>flex-mojos-plugin-repository</id>
+			<url> https://oss.sonatype.org/content/repositories/releases</url>
+		</pluginRepository>
+	</pluginRepositories>
 
 </project>
